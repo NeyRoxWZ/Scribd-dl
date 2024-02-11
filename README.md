@@ -5,3 +5,5 @@ Feel free to use or modify the provided code. If you have any questions or need 
 Discord: neyrox.lua
 
 Email: neyroxwzpro@gmail.com
+
+The website publish : https://neyroxwz.github.io/scribd-dl/#
