@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Convertisseur de liens</title>
+    <title>Link Converter</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -97,14 +97,14 @@
 </head>
 <body>
     <div id="navbar">
-        <a href="#" onclick="toggleContainer('main-container')">Convertisseur</a>
+        <a href="#" onclick="toggleContainer('main-container')">Converter</a>
         <a href="#" onclick="toggleContainer('logsContainer')">Logs</a>
     </div>
 
     <div id="main-container">
-        <h2>Convertisseur de liens</h2>
-        <input type="text" id="linkInput" placeholder="Entrez le lien à transformer">
-        <button onclick="transformLink()">Transformer</button>
+        <h2>Link Converter</h2>
+        <input type="text" id="linkInput" placeholder="Enter the link to transform">
+        <button onclick="transformLink()">Transform</button>
 
         <div class="proposition">
             <div id="result1"></div>
@@ -122,7 +122,7 @@
 
     <script>
         window.onload = function() {
-            // Charger les logs depuis les cookies lors de l'ouverture de la page
+            // Load logs from cookies when the page opens
             loadLogs();
         };
 
@@ -135,36 +135,35 @@
         function transformLink() {
             var linkInput = document.getElementById('linkInput').value;
             if (linkInput.trim() === '') {
-                alert('Veuillez entrer un lien valide.');
+                alert('Please enter a valid link.');
                 return;
             }
 
-            // Le code de transformation pour les deux propositions
+            // Transformation code for both propositions
             var transformedLink1 = transform(linkInput, 1);
             var transformedLink2 = transform(linkInput, 2);
 
-            // Affichage des résultats cliquables
-            document.getElementById('result1').innerHTML = '<strong>Proposition 1 :</strong> <a href="' + transformedLink1 + '" target="_blank">' + transformedLink1 + '</a>';
-            document.getElementById('result2').innerHTML = '<strong>Proposition 2 :</strong> <a href="' + transformedLink2 + '" target="_blank">' + transformedLink2 + '</a>';
+            // Display clickable results
+            document.getElementById('result1').innerHTML = '<strong>Proposition 1:</strong> <a href="' + transformedLink1 + '" target="_blank">' + transformedLink1 + '</a>';
+            document.getElementById('result2').innerHTML = '<strong>Proposition 2:</strong> <a href="' + transformedLink2 + '" target="_blank">' + transformedLink2 + '</a>';
 
-            // Ajout des liens transformés aux logs
+            // Add transformed links to logs
             addToLogs(transformedLink1);
             addToLogs(transformedLink2);
 
-            // Sauvegarder les logs dans les cookies
+            // Save logs to cookies
             saveLogs();
         }
 
         function transform(link, option) {
-            // Implémentez le code de transformation ici
-            // Exemple simple : ajouter un suffixe à l'URL
+            // Implement the transformation code here
+            // Simple example: append a suffix to the URL
             if (option === 1) {
                 var docId = link.match(/\/(\d+)\//);
-                return 'https://fr.scribd.com/embeds/' + docId[1] + '/content';
+                return 'https://en.scribd.com/embeds/' + docId[1] + '/content';
             } else if (option === 2) {
-                var netloc = new URL(link).hostname.replace('fr.scribd.com', 'scribd.vpdfs.com');
                 var path = link.match(/\/(\d+.*)$/);
-                return 'https://' + netloc + '/document/' + path[1];
+                return 'https://scribd.vpdfs.com/document/' + path[1];
             }
         }
 
@@ -226,7 +225,7 @@
             textArea.select();
             document.execCommand('Copy');
             document.body.removeChild(textArea);
-            alert('Copié dans le presse-papiers : ' + text);
+            alert('Copied to clipboard: ' + text);
         }
     </script>
 </body>
